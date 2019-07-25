@@ -18,8 +18,10 @@ $(document).ready(function(){
   // initial variables that will hold the input values
     var trainName;
     var destination;
-    var firstTime;
+    var firstTime = 0;
     var frequency = 0;
+ 
+    
 
     // on-click function for the submit to process the inputs
 $("#submit-train").on("click", function(event){
@@ -30,20 +32,29 @@ $("#submit-train").on("click", function(event){
 // use jquery to grab the values of the targeted inputs
     trainName = $("#train-name").val().trim();
     destination = $("#destination").val().trim();
-    firstTime = $("#first-train").val().trim();
+    firstTime = $("#first-train").val().trim()
     frequency = $("#frequency").val().trim();
 
+    var converted = moment((firstTime), "HH:mm")
+
+    var next = converted.add(frequency, 'minutes').format('HH:mm')
+
+
+
+ 
 // console log the result
     console.log(trainName)
     console.log(destination)
     console.log(firstTime)
     console.log(frequency)
+    console.log(next)
 
     database.ref().push({
         name: trainName,
         destination: destination,
         firstTrain: firstTime,
-        frequency: frequency
+        frequency: frequency,
+        nextArrival: next
     })
 
 
@@ -56,12 +67,18 @@ $("#submit-train").on("click", function(event){
 
 })
 
+
+
 database.ref().on("child_added", function(snapshot){
+
 
     console.log(snapshot.val().name)
     console.log(snapshot.val().destination)
     console.log(snapshot.val().firstTrain)
     console.log(snapshot.val().frequency)
+
+    
+
 
     $("#train-table").append("<tr>" + "<td>" + snapshot.val().name + "</td>" +
     "<td>" + snapshot.val().destination + "</td>" +
