@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <script src="assets/javascript/app.js"></script>
+    <title>Train App</title>
+</head>
+<body>
+    <header class="jumbotron">
+        <h1>Train Station Times</h1>
+    </header>  
+
+    <table class="table table-dark">
+        <th>Current Train Schedule</th>
+        <tr>
+            <th>Train Name</th>
+            <th>Destination</th>
+            <th>Frquency (min)</th>
+            <th>Next Arrival</th>
+            <th>Minutes Away</th>
+        </tr>
+    </table>
+<br>
+    <form>
+        <div class="form-group">
+        <label id="formhead" for="addtrain"><strong>Add Train</strong></label>
+        <br>
+          <label for="train-name">Train Name</label>
+          <input type="text" class="form-control" id="train-name">
+        </div>
+        <div class="form-group">
+          <label for="destination">Destination</label>
+          <input type="text" class="form-control" id="destination">
+        </div>
+        <div class="form-group">
+            <label for="firsttrain">First Train Time (HH:mm - military time)</label>
+            <input type="text" class="form-control" id="first-train">
+        </div>
+        <div class="form-group">
+            <label for="frequency">Frequency (min)</label>
+            <input type="text" class="form-control" id="frequency">
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-train">Submit</button>
+    </form>
+</body>
+</html>

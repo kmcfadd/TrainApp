@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin: 0 10px;
+    height: 48px;
+}
+
+h1 {
+    line-height: 5px;
+}
+
+.jumbotron {
+    padding: 3rem 2rem;
+}
+
+table {
+    margin: 0 10px;
+    padding-right: 5px;
+}
+
+form {
+    margin: 0 10px;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+label {
+    margin-left: 10px;
+    font-weight: bold; 
+}
+
+input {
+    margin-left: 10px;
+}
+.form-control {
+    width: 97%;
+}
+
+button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#formhead {
+    margin-top: 5px;
+}
