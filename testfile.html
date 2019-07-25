@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var current = moment().format("HH:mm")
+
+        console.log(current)
+
+        var frequency = "30";
+
+        var nextArrival;
+
+        var start = moment('10:00', 'HH:mm') 
+/*        
+M {_isAMomentObject: true, _i: "10:00", _f: "HH:mm", _isUTC: false, _pf: {…}, …}
+_d: Thu Jul 25 2019 10:00:00 GMT-0700 (Pacific Daylight Time) {}
+_f: "HH:mm"
+_i: "10:00"
+_isAMomentObject: true
+_isUTC: false
+_isValid: true
+_locale: P {_calendar: {…}, _longDateFormat: {…}, _invalidDate: "Invalid date", ordinal: ƒ, _dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/, …}
+_pf: {empty: false, unusedTokens: Array(0), unusedInput: Array(0), overflow: -1, charsLeftOver: 0, …}
+__proto__: Object
+*/
+        console.log(start._i)
+
+        var difference = moment().diff(moment('10:00', 'HH:mm'), 'minutes')
+
+        console.log(difference + " minutes")
+
+        var division = parseInt(difference / frequency)
+
+        console.log(division)
+
+        var arrivals = []
+
+        for ( var i = 0; i < division; i++) {
+            var arrival = start.add(frequency, 'minutes')
+            nextArrival = moment(arrival).format("HH:mm")
+            arrivals.push(nextArrival)
+        }
+
+        console.log(arrivals) // array 
+
+        console.log(arrivals[arrivals.length-1]) // last item in array
+
+        var lastArrival = arrivals[arrivals.length-1]
+
+        var converted = moment(lastArrival, "HH:mm")
+
+        console.log(converted) // moment object of last item in array
+
+        console.log(lastArrival) // timestamp of last item in array (same as line 54)
+
+        console.log(moment()) // moment object of current time
+
+        var minuteSince = moment().diff(moment(lastArrival, "HH:mm"), 'minutes') // find the difference between the current time moment object and the last arrival in minutes
+
+        console.log(frequency - minuteSince + " minutes until next") // log it to find the time until the next train using the frequency minus above
+
+    </script>
+</body>
+</html>
