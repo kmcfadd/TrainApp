@@ -10,12 +10,36 @@ header {
     height: 48px;
 }
 
-h1 {
+body {
+    background-image: url(../images/falltracksbg.jpg);
+    
+    background-position: -100px 50%;
+    background-size: auto;
+    height: auto;
+}
+
+.h1, h1 {
     line-height: 5px;
+    color: white;
+    float: left;
+    margin-left: 58px;
+    font-size: 2.5rem;
+    text-shadow: grey 0.3em 0.3em 0.3em;
 }
 
 .jumbotron {
-    padding: 3rem 2rem;
+    padding: 6rem 0;
+    background-image: url(../images/bullet.jpg);
+    background-position: 0px 69%;
+    background-repeat: no-repeat;
+    max-width: 1000px;
+    align-content: center;
+    opacity: .8;
+    
+    
+}
+.table {
+    background: rgba(255,255,255,0.3);
 }
 
 table {
@@ -32,6 +56,9 @@ form {
     border: solid 1px black;
     border-radius: 10px;
     margin-bottom: 15px;
+    background-color: lightslategrey;
+    background:rgba(255,255,255,0.3);
+    color: #fff;
 }
 
 label {
@@ -49,8 +76,10 @@ input {
 button {
     margin-left: 10px;
     margin-bottom: 10px;
+    
 }
 
 #formhead {
     margin-top: 5px;
+    
 }
