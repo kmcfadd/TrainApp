@@ -18,11 +18,11 @@ $(document).ready(function(){
   // initial variables that will hold the input values
     var trainName;
     var destination;
-    var firstTime = 0;
+    var firstTrain = 0;
     var frequency = 0;
+    var nextArrival;
  
     
-
     // on-click function for the submit to process the inputs
 $("#submit-train").on("click", function(event){
 
@@ -32,31 +32,50 @@ $("#submit-train").on("click", function(event){
 // use jquery to grab the values of the targeted inputs
     trainName = $("#train-name").val().trim();
     destination = $("#destination").val().trim();
-    firstTime = $("#first-train").val().trim()
+    firstTrain = moment($("#first-train").val().trim(), "HH:mm")
     frequency = $("#frequency").val().trim();
 
-    var converted = moment((firstTime), "HH:mm")
-
-    var next = converted.add(frequency, 'minutes').format('HH:mm')
-
-
-
- 
 // console log the result
     console.log(trainName)
     console.log(destination)
-    console.log(firstTime)
+    console.log("first train " + firstTrain)
     console.log(frequency)
-    console.log(next)
+    
+    // using the first train time we calculate how many minutes til now it is
+    var difference = moment().diff(moment(firstTrain, 'HH:mm'), 'minutes')
+    var division = parseInt(difference / frequency)
 
+    // create an array to hold our times for arrivals
+    var arrivals = []
+
+    // create a loop to add every time using the frequency to the array, until we hit our current time
+    for ( var i = 0; i < division+1; i++) {
+        var arrival = firstTrain.add(frequency, 'minutes')
+        var anotherArrival = moment(arrival).format("HH:mm")
+        arrivals.push(anotherArrival)
+    }
+
+    // pull out the last item in the array as the "next arrival"
+    var lastArrival = arrivals[arrivals.length-1]
+
+    // log the rest
+    console.log(arrivals)
+    console.log(lastArrival)
+
+    // calculate how many minutes until the next arrival
+    var minutesAway = moment(lastArrival, "HH:mm").fromNow()
+
+    console.log(minutesAway)
+
+
+    // push all of our variables into the database
     database.ref().push({
         name: trainName,
         destination: destination,
-        firstTrain: firstTime,
         frequency: frequency,
-        nextArrival: next
+        nextArrival: lastArrival,
+        minutesAway: minutesAway
     })
-
 
 
 // clear the inputs of their values
@@ -68,21 +87,22 @@ $("#submit-train").on("click", function(event){
 })
 
 
-
 database.ref().on("child_added", function(snapshot){
 
-
+    /* log all the database variables
     console.log(snapshot.val().name)
     console.log(snapshot.val().destination)
     console.log(snapshot.val().firstTrain)
     console.log(snapshot.val().frequency)
+    console.log(snapshot.val().nextArrival)
+    console.log(snapshot.val().minutes)*/
 
-    
-
-
+    // append the database values to our table
     $("#train-table").append("<tr>" + "<td>" + snapshot.val().name + "</td>" +
     "<td>" + snapshot.val().destination + "</td>" +
     "<td>" + snapshot.val().frequency + "</td>" +
+    "<td>" + snapshot.val().nextArrival + "</td>" +
+    "<td>" + snapshot.val().minutesAway + "</td>" +
     "</tr>"
     )
 

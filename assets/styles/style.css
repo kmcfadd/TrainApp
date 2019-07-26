@@ -19,14 +19,19 @@ h1 {
 }
 
 table {
-    margin: 0 10px;
+    margin: 0 20px;
     padding-right: 5px;
 }
 
+.table {
+    width: 95%;
+}
+
 form {
-    margin: 0 10px;
+    margin: 0 30px;
     border: solid 1px black;
     border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 label {
@@ -38,7 +43,7 @@ input {
     margin-left: 10px;
 }
 .form-control {
-    width: 97%;
+    width: 95%;
 }
 
 button {

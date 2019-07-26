@@ -4,21 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <title>Document</title>
 </head>
 <body>
     <script>
         
-        var current = moment().format("HH:mm")
+        var Config = {
+            apiKey: "AIzaSyAaM8bnlDoIGd7FjZFJEEd62wwdMzjvayM",
+            authDomain: "trainapp-9bd98.firebaseapp.com",
+            databaseURL: "https://trainapp-9bd98.firebaseio.com",
+            projectId: "trainapp-9bd98",
+            storageBucket: "",
+            messagingSenderId: "928211259254",
+            appId: "1:928211259254:web:fdc818b2b7e752c4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(Config);
 
+         var database = firebase.database();
+        
+        var current = moment().format("HH:mm")
         console.log(current)
 
-        var frequency = "30";
+        database.ref().set({
+            time: moment().format("HH:mm A")
+        })
 
+        var frequency = 10;
         var nextArrival;
-
-        var start = moment('10:00', 'HH:mm') 
+        var start = moment('9:00', 'HH:mm') 
 /*        
 M {_isAMomentObject: true, _i: "10:00", _f: "HH:mm", _isUTC: false, _pf: {…}, …}
 _d: Thu Jul 25 2019 10:00:00 GMT-0700 (Pacific Daylight Time) {}
@@ -33,7 +50,7 @@ __proto__: Object
 */
         console.log(start._i)
 
-        var difference = moment().diff(moment('10:00', 'HH:mm'), 'minutes')
+        var difference = moment().diff(moment('9:00', 'HH:mm'), 'minutes')
 
         console.log(difference + " minutes")
 
@@ -45,8 +62,8 @@ __proto__: Object
 
         for ( var i = 0; i < division; i++) {
             var arrival = start.add(frequency, 'minutes')
-            nextArrival = moment(arrival).format("HH:mm")
-            arrivals.push(nextArrival)
+            anotherArrival = moment(arrival).format("HH:mm")
+            arrivals.push(anotherArrival)
         }
 
         console.log(arrivals) // array 
@@ -55,9 +72,9 @@ __proto__: Object
 
         var lastArrival = arrivals[arrivals.length-1]
 
-        var converted = moment(lastArrival, "HH:mm")
+        nextArrival = moment(lastArrival, "HH:mm").add(frequency, 'minutes')
 
-        console.log(converted) // moment object of last item in array
+        console.log(moment(lastArrival, "HH:mm").add(frequency, 'minutes'))
 
         console.log(lastArrival) // timestamp of last item in array (same as line 54)
 
