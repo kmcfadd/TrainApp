@@ -17,7 +17,8 @@ body {
     height: auto;
 }
 
-.h1, h1 {
+.h1,
+h1 {
     line-height: 5px;
     color: white;
     float: left;
@@ -27,13 +28,12 @@ body {
 }
 
 .jumbotron {
-    
     background-image: url(../images/bullet.jpg);
     background-position: 0px 69%;
     background-repeat: no-repeat;
     max-width: 1000px;
     opacity: .8;
-    filter:alpha(opacity=80);
+    filter: alpha(opacity=80);
     padding: 6rem 0;
     margin: 0 auto 2rem auto;
 }
@@ -46,6 +46,7 @@ table {
 
 .table {
     width: 95%;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 form {
@@ -54,18 +55,19 @@ form {
     border-radius: 10px;
     margin-bottom: 15px;
     background-color: lightslategrey;
-    background:rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     color: #fff;
 }
 
 label {
     margin-left: 10px;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 input {
     margin-left: 10px;
 }
+
 .form-control {
     width: 95%;
 }
@@ -73,10 +75,10 @@ input {
 button {
     margin-left: 10px;
     margin-bottom: 10px;
-    
+
 }
 
 #formhead {
     margin-top: 5px;
-    
+
 }
